@@ -6,5 +6,14 @@ before_install:
   - docker build -f Dockerfile.dev -t kavin1/docker-react .
 
 script:
-  - docker run kavin1/docker-react npm run test -- --coverage
+  - docker run -e CI=true kavin1/docker-react npm run test -- --coverage
 
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "ap-southeast-1"
+#   app: "docker"
+#   env: "Docker-env"
+#   bucket_name: "elasticbeanstalk-ap-southeast-1-964317254124"
+#   bucket_path: "docker"
+#   on:
+#     branch: master
